@@ -16,9 +16,14 @@
  */
 package parkalot.ng;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
 import java.sql.*;
 import java.text.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -33,6 +38,11 @@ public class entry_form extends javax.swing.JFrame {
      */
     public entry_form() {
         initComponents();
+        try {
+            path();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(entry_form.class.getName()).log(Level.SEVERE, null, ex);
+        }
         slot_sorter();
         add_box();
     }
@@ -207,7 +217,7 @@ public class entry_form extends javax.swing.JFrame {
         ResultSet rlt;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection c=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+			Connection c=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement stat=c.createStatement();
 			rlt=stat.executeQuery("Select slot_no from entry ");			
  				while (rlt.next()) {      
@@ -217,6 +227,18 @@ public class entry_form extends javax.swing.JFrame {
 		catch(Exception e){}
         two.removeAll(list);
 }
+        
+        String jarDir;
+
+    /**
+     * finds path of jar on system
+     * @throws URISyntaxException
+     */
+    void path() throws URISyntaxException{
+        CodeSource codeSource = ParkalotNg.class.getProtectionDomain().getCodeSource();
+        File jarFile = new File(codeSource.getLocation().toURI().getPath());
+        jarDir = jarFile.getParentFile().getPath();
+    }
         
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         perma();
@@ -251,7 +273,7 @@ public class entry_form extends javax.swing.JFrame {
             x6=fft.format(date);
         try{
             Class.forName("org.sqlite.JDBC");
-            ham=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+            ham=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
             egg=ham.prepareStatement("insert entry value(?,?,?,?,?,?)");
             egg.setString(1, x1);
             egg.setString(2, x2);
@@ -274,7 +296,7 @@ public class entry_form extends javax.swing.JFrame {
                         }
         s=Integer.parseInt(sIs2);
             Class.forName("org.sqlite.JDBC");
-            dum=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+            dum=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
             dang=dum.prepareStatement("insert into temp(no) values ("+s+")");
             dang.executeUpdate();
             

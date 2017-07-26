@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package parkalot.ng;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author lll2yu
@@ -28,6 +33,11 @@ public class conf_page extends javax.swing.JFrame {
      */
     public conf_page() {
         initComponents();
+        try {
+            path();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(conf_page.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -81,6 +91,7 @@ public class conf_page extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(240, 90, 0, 0));
         setMinimumSize(new java.awt.Dimension(900, 640));
+        setPreferredSize(new java.awt.Dimension(900, 640));
         getContentPane().setLayout(null);
 
         jLabel1.setText("Configurations");
@@ -158,7 +169,18 @@ public class conf_page extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         set_rate();
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    String jarDir;
 
+    /**
+     * finds path of jar on system
+     * @throws URISyntaxException
+     */
+    void path() throws URISyntaxException{
+        CodeSource codeSource = ParkalotNg.class.getProtectionDomain().getCodeSource();
+        File jarFile = new File(codeSource.getLocation().toURI().getPath());
+        jarDir = jarFile.getParentFile().getPath();
+    }
 float x1;
 String x2;
     void set_rate(){
@@ -170,8 +192,8 @@ String x2;
                         }
         try{
             ResultSet re;
-            Class.forName("org.mariadb.jdbc.Driver");
-		Connection ce=DriverManager.getConnection("jdbc:mysql://localhost/parking", "root", "xmbc@541");
+            Class.forName("org.sqlite.JDBC");
+		Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/ratesDB.db");
 		Statement se=ce.createStatement();
 		re=se.executeQuery("update rates set price="+x1+"where name='"+x2+"'");
                 tf1.setText("Done");
@@ -213,8 +235,8 @@ String x2;
         s1=jTextField1.getText();
         ResultSet re;
         try{
-			Class.forName("org.mariadb.jdbc.Driver");
-			Connection ce=DriverManager.getConnection("jdbc:mysql://localhost/parking", "root", "xmbc@541");
+			Class.forName("org.sqlite.JDBC");
+			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement se=ce.createStatement();
 			re=se.executeQuery("insert into slots(no) values('"+s1+"')");
 		}
@@ -224,8 +246,8 @@ String x2;
     void empty(){
         ResultSet re;
         try{
-			Class.forName("org.mariadb.jdbc.Driver");
-			Connection ce=DriverManager.getConnection("jdbc:mysql://localhost/parking", "root", "xmbc@541");
+			Class.forName("org.sqlite.JDBC");
+			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement se=ce.createStatement();
 			re=se.executeQuery("delete from slots");
 		}

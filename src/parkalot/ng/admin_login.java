@@ -161,7 +161,7 @@ public class admin_login extends javax.swing.JFrame {
      * finds path of jar on system
      * @throws URISyntaxException
      */
-    public void path() throws URISyntaxException{
+    void path() throws URISyntaxException{
         CodeSource codeSource = ParkalotNg.class.getProtectionDomain().getCodeSource();
         File jarFile = new File(codeSource.getLocation().toURI().getPath());
         jarDir = jarFile.getParentFile().getPath();

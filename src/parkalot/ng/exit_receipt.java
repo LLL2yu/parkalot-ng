@@ -15,8 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package parkalot.ng;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author lll2yu
@@ -28,6 +33,11 @@ public class exit_receipt extends javax.swing.JFrame {
      */
     public exit_receipt() {
         initComponents();
+        try {
+            path();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(exit_receipt.class.getName()).log(Level.SEVERE, null, ex);
+        }
         get_valuees();
     }
     String t;
@@ -35,7 +45,7 @@ public class exit_receipt extends javax.swing.JFrame {
         ResultSet r;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection cs=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+			Connection cs=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement s=cs.createStatement();
 			r=s.executeQuery("Select * from tempe");
 			while(r.next()){
@@ -52,7 +62,7 @@ public class exit_receipt extends javax.swing.JFrame {
         ResultSet result;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection c=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+			Connection c=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement stat=c.createStatement();
 			result=stat.executeQuery("Select * from entry where reg_no='"+t+"'");
 			while(result.next()){
@@ -106,7 +116,7 @@ public class exit_receipt extends javax.swing.JFrame {
         ResultSet re;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection ce=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement se=ce.createStatement();
 			re=se.executeQuery("select price from rates where name='"+lap+"'");
                         while(re.next()){
@@ -119,7 +129,7 @@ public class exit_receipt extends javax.swing.JFrame {
         ResultSet re;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection ce=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement se=ce.createStatement();
 			re=se.executeQuery("delete from tempe");
 		}
@@ -130,12 +140,18 @@ public class exit_receipt extends javax.swing.JFrame {
         ResultSet re;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection ce=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement se=ce.createStatement();
 			re=se.executeQuery("delete from entry where reg_no='"+t+"'");
 		}
 		catch(Exception e){}
         empty_tempe();
+    }
+    String jarDir;
+    void path() throws URISyntaxException{
+        CodeSource codeSource = ParkalotNg.class.getProtectionDomain().getCodeSource();
+        File jarFile = new File(codeSource.getLocation().toURI().getPath());
+        jarDir = jarFile.getParentFile().getPath();
     }
     /**
      * This method is called from within the constructor to initialize the form.

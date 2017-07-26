@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package parkalot.ng;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author lll2yu
@@ -27,6 +32,11 @@ public class user_login extends javax.swing.JFrame {
      */
     public user_login() {
         initComponents();
+        try {
+            path();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(user_login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -124,7 +134,7 @@ public class user_login extends javax.swing.JFrame {
         ResultSet res;
         try{
             Class.forName("org.sqlite.JDBC");
-            con=DriverManager.getConnection("jdbc:sqlite:usersDB.db");
+            con=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/usersDB.db");
             Statement stat=con.createStatement();
             res=stat.executeQuery("select pass from user_details where login='"+x1+"'");
             while(res.next()){
@@ -132,6 +142,12 @@ public class user_login extends javax.swing.JFrame {
             }    
         }
         catch(Exception e){}     
+    }
+    String jarDir;
+    void path() throws URISyntaxException{
+        CodeSource codeSource = ParkalotNg.class.getProtectionDomain().getCodeSource();
+        File jarFile = new File(codeSource.getLocation().toURI().getPath());
+        jarDir = jarFile.getParentFile().getPath();
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         get_pass();

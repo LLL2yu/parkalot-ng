@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package parkalot.ng;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author lll2yu
@@ -27,6 +32,11 @@ public class del_user extends javax.swing.JFrame {
      */
     public del_user() {
         initComponents();
+        try {
+            path();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(del_user.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -136,11 +146,17 @@ public class del_user extends javax.swing.JFrame {
         ResultSet re;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection ce=DriverManager.getConnection("jdbc:sqlite:usersDB.db");
+			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/usersDB.db");
 			Statement se=ce.createStatement();
 			re=se.executeQuery("delete from user_details where login='"+s+"'");
 		}
 	catch(Exception e){}
+    }
+    String jarDir;
+    void path() throws URISyntaxException{
+        CodeSource codeSource = ParkalotNg.class.getProtectionDomain().getCodeSource();
+        File jarFile = new File(codeSource.getLocation().toURI().getPath());
+        jarDir = jarFile.getParentFile().getPath();
     }
     /**
      * @param args the command line arguments

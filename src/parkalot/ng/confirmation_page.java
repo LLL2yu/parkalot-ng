@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package parkalot.ng;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author lll2yu
@@ -27,6 +32,11 @@ public class confirmation_page extends javax.swing.JFrame {
      */
     public confirmation_page() {
         initComponents();
+        try {
+            path();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(confirmation_page.class.getName()).log(Level.SEVERE, null, ex);
+        }
         get_values();
     }
      String t;
@@ -34,7 +44,7 @@ public class confirmation_page extends javax.swing.JFrame {
         ResultSet r;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection cs=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+			Connection cs=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement s=cs.createStatement();
 			r=s.executeQuery("Select * from temp");
 			while(r.next()){
@@ -48,7 +58,7 @@ public class confirmation_page extends javax.swing.JFrame {
         ResultSet result;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection c=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+			Connection c=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement stat=c.createStatement();
 			result=stat.executeQuery("Select * from entry where slot_no="+t);
 			while(result.next()){
@@ -66,11 +76,17 @@ public class confirmation_page extends javax.swing.JFrame {
         ResultSet re;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection ce=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
 			Statement se=ce.createStatement();
 			re=se.executeQuery("delete from temp");
             }
 		catch(Exception e){}
+    }
+    String jarDir;
+    void path() throws URISyntaxException{
+        CodeSource codeSource = ParkalotNg.class.getProtectionDomain().getCodeSource();
+        File jarFile = new File(codeSource.getLocation().toURI().getPath());
+        jarDir = jarFile.getParentFile().getPath();
     }
 
     /**

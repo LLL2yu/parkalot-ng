@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package parkalot.ng;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
 import java.sql.*;
 /**
  *
@@ -133,7 +136,7 @@ String s1,s2;
         ResultSet re;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection ce=DriverManager.getConnection("jdbc:sqlite:usersDB.db");
+			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/usersDB.db");
 			Statement se=ce.createStatement();
 			re=se.executeQuery("delete from admin_details");
 		}
@@ -143,12 +146,18 @@ String s1,s2;
     ResultSet rep;
         try{
 			Class.forName("org.sqlite.JDBC");
-			Connection ce=DriverManager.getConnection("jdbc:sqlite:usersDB.db");
+			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/usersDB.db");
 			Statement see=ce.createStatement();
 			rep=see.executeQuery("insert into admin_details(login,pass) values ('"+s1+"'"+","+"'"+s2+"'"+");");
 		}
 	catch(Exception e){}
 }
+    String jarDir;
+    void path() throws URISyntaxException{
+        CodeSource codeSource = ParkalotNg.class.getProtectionDomain().getCodeSource();
+        File jarFile = new File(codeSource.getLocation().toURI().getPath());
+        jarDir = jarFile.getParentFile().getPath();
+    }
     /**
      * @param args the command line arguments
      */

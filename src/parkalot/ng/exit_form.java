@@ -15,7 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package parkalot.ng;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author lll2yu
@@ -28,6 +33,11 @@ public class exit_form extends javax.swing.JFrame {
      */
     public exit_form() {
         initComponents();
+        try {
+            path();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(exit_form.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
@@ -159,12 +169,18 @@ public class exit_form extends javax.swing.JFrame {
             String s;
             s=jTextField1.getText();
             Class.forName("org.sqlite.JDBC");
-            dum=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+            dum=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
             dang=dum.prepareStatement("insert into tempe(no) values ('"+s+"')");
             dang.executeUpdate();
             
         }
         catch(Exception e){} 
+    }
+    String jarDir;
+    void path() throws URISyntaxException{
+        CodeSource codeSource = ParkalotNg.class.getProtectionDomain().getCodeSource();
+        File jarFile = new File(codeSource.getLocation().toURI().getPath());
+        jarDir = jarFile.getParentFile().getPath();
     }
     /**
      * @param args the command line arguments
