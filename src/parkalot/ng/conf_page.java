@@ -51,6 +51,9 @@ public class conf_page extends javax.swing.JFrame {
         cb1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
 
         jDialog1.setBounds(new java.awt.Rectangle(530, 240, 250, 50));
         jDialog1.setMinimumSize(new java.awt.Dimension(350, 200));
@@ -78,7 +81,6 @@ public class conf_page extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(240, 90, 0, 0));
         setMinimumSize(new java.awt.Dimension(900, 640));
-        setPreferredSize(new java.awt.Dimension(900, 640));
         getContentPane().setLayout(null);
 
         jLabel1.setText("Configurations");
@@ -107,7 +109,7 @@ public class conf_page extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(340, 210, 200, 25);
+        jButton2.setBounds(340, 320, 200, 25);
 
         jButton3.setText("Edit User Details");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +118,7 @@ public class conf_page extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(340, 280, 200, 25);
+        jButton3.setBounds(340, 380, 200, 25);
 
         cb1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--select one--", "Hatchback", "Sedan", "Suv", "Minivan" }));
         getContentPane().add(cb1);
@@ -133,7 +135,22 @@ public class conf_page extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(410, 375, 80, 30);
+        jButton6.setBounds(410, 440, 80, 30);
+
+        jLabel4.setText("Set no. of parking slots available");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(140, 180, 230, 30);
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(460, 180, 260, 30);
+
+        jButton7.setText("Set");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton7);
+        jButton7.setBounds(360, 245, 180, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -153,8 +170,8 @@ String x2;
                         }
         try{
             ResultSet re;
-            Class.forName("org.sqlite.JDBC");
-		Connection ce=DriverManager.getConnection("jdbc:sqlite:ratesDB.db");
+            Class.forName("org.mariadb.jdbc.Driver");
+		Connection ce=DriverManager.getConnection("jdbc:mysql://localhost/parking", "root", "xmbc@541");
 		Statement se=ce.createStatement();
 		re=se.executeQuery("update rates set price="+x1+"where name='"+x2+"'");
                 tf1.setText("Done");
@@ -186,28 +203,34 @@ String x2;
         dispose();
         new admin_login().setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
-    String s1,s2;
-    void empty_details(){
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       set_slots(); 
+    }//GEN-LAST:event_jButton7ActionPerformed
+    String s1;
+    void set_slots(){
+        empty();
+        s1=jTextField1.getText();
         ResultSet re;
         try{
-			Class.forName("org.sqlite.JDBC");
-			Connection ce=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
+			Class.forName("org.mariadb.jdbc.Driver");
+			Connection ce=DriverManager.getConnection("jdbc:mysql://localhost/parking", "root", "xmbc@541");
 			Statement se=ce.createStatement();
-			re=se.executeQuery("delete from _details");
+			re=se.executeQuery("insert into slots(no) values('"+s1+"')");
+		}
+	catch(Exception e){}
+        jTextField1.setText("Done");
+    }
+    void empty(){
+        ResultSet re;
+        try{
+			Class.forName("org.mariadb.jdbc.Driver");
+			Connection ce=DriverManager.getConnection("jdbc:mysql://localhost/parking", "root", "xmbc@541");
+			Statement se=ce.createStatement();
+			re=se.executeQuery("delete from slots");
 		}
 	catch(Exception e){}
     }
-    
-    void set_newdetails(){
-    ResultSet rep;
-        try{
-			Class.forName("org.sqlite.JDBC");
-			Connection ce=DriverManager.getConnection("jdbc:sqlite:parkingDB.db");
-			Statement see=ce.createStatement();
-			rep=see.executeQuery("insert into user_details(login,pass) values ('"+s1+"'"+","+"'"+s2+"'"+");");
-		}
-	catch(Exception e){}
-}
     /**
      * @param args the command line arguments
      */
@@ -235,8 +258,6 @@ String x2;
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -254,10 +275,13 @@ String x2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField tf1;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,12 @@
  */
 package parkalot.ng;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -122,12 +127,17 @@ public class admin_login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     String x1,x2,x3;
     void get_pass(){
+        try {
+            path();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(admin_login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         x1=tf1.getText();
         x2=pf1.getText();
         ResultSet res;
         try{
             Class.forName("org.sqlite.JDBC");
-            con=DriverManager.getConnection("jdbc:sqlite:usersDB.db");
+            con=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/usersDB.db");
             Statement stat=con.createStatement();
             res=stat.executeQuery("select pass from admin_details where login='"+x1+"'");
             while(res.next()){
@@ -145,7 +155,17 @@ public class admin_login extends javax.swing.JFrame {
            else{
                jDialog1.setVisible(true);}
     }//GEN-LAST:event_jButton1ActionPerformed
+    String jarDir;
 
+    /**
+     * finds path of jar on system
+     * @throws URISyntaxException
+     */
+    public void path() throws URISyntaxException{
+        CodeSource codeSource = ParkalotNg.class.getProtectionDomain().getCodeSource();
+        File jarFile = new File(codeSource.getLocation().toURI().getPath());
+        jarDir = jarFile.getParentFile().getPath();
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         tf1.setText("");
         pf1.setText("");
