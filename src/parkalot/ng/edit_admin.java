@@ -19,6 +19,8 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.security.CodeSource;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author lll2yu
@@ -30,6 +32,11 @@ public class edit_admin extends javax.swing.JFrame {
      */
     public edit_admin() {
         initComponents();
+        try {
+            path();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(edit_admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -44,10 +51,8 @@ public class edit_admin extends javax.swing.JFrame {
         jDialog1 = new javax.swing.JDialog();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tf1 = new javax.swing.JTextField();
         pf1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -76,21 +81,15 @@ public class edit_admin extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(900, 640));
         getContentPane().setLayout(null);
 
-        jLabel1.setText("New Login Name :");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(180, 110, 160, 40);
-
         jLabel2.setText("Edit Login Settings");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(343, 25, 190, 30);
 
         jLabel3.setText("New Password :");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(180, 195, 130, 30);
-        getContentPane().add(tf1);
-        tf1.setBounds(510, 120, 200, 25);
+        jLabel3.setBounds(170, 140, 130, 30);
         getContentPane().add(pf1);
-        pf1.setBounds(510, 190, 200, 25);
+        pf1.setBounds(510, 140, 200, 30);
 
         jButton1.setText("Set New Password");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,11 +116,9 @@ public class edit_admin extends javax.swing.JFrame {
         new conf_page().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-String s1,s2;
+String s1;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        s1=tf1.getText();
-        s2=pf1.getText();
-        empty_details();
+        s1=pf1.getText();
         set_newdetails();
         jDialog1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -132,23 +129,13 @@ String s1,s2;
         new admin_login().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    void empty_details(){
-        ResultSet re;
-        try{
-			Class.forName("org.sqlite.JDBC");
-			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/usersDB.db");
-			Statement se=ce.createStatement();
-			re=se.executeQuery("delete from admin_details");
-		}
-	catch(Exception e){}
-    }
     void set_newdetails(){
     ResultSet rep;
         try{
 			Class.forName("org.sqlite.JDBC");
 			Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/usersDB.db");
 			Statement see=ce.createStatement();
-			rep=see.executeQuery("insert into admin_details(login,pass) values ('"+s1+"'"+","+"'"+s2+"'"+");");
+			rep=see.executeQuery("update admin_details set pass='"+s1+"' where login ='admin'");
 		}
 	catch(Exception e){}
 }
@@ -201,11 +188,9 @@ String s1,s2;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JDialog jDialog1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField pf1;
-    private javax.swing.JTextField tf1;
     // End of variables declaration//GEN-END:variables
 }
