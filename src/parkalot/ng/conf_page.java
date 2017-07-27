@@ -26,8 +26,7 @@ import java.util.logging.Logger;
  * @author lll2yu
  */
 public class conf_page extends javax.swing.JFrame {
-    Connection ham;
-    PreparedStatement egg;
+    
     /**
      * Creates new form conf_page
      */
