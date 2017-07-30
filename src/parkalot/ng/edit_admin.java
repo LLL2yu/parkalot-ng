@@ -56,6 +56,7 @@ public class edit_admin extends javax.swing.JFrame {
         pf1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jDialog1.setBounds(new java.awt.Rectangle(530, 240, 250, 50));
         jDialog1.setMinimumSize(new java.awt.Dimension(350, 200));
@@ -83,13 +84,13 @@ public class edit_admin extends javax.swing.JFrame {
 
         jLabel2.setText("Edit Login Settings");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(343, 25, 190, 30);
+        jLabel2.setBounds(380, 30, 190, 30);
 
         jLabel3.setText("New Password :");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(170, 140, 130, 30);
+        jLabel3.setBounds(170, 160, 130, 30);
         getContentPane().add(pf1);
-        pf1.setBounds(510, 140, 200, 30);
+        pf1.setBounds(540, 160, 200, 30);
 
         jButton1.setText("Set New Password");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +99,7 @@ public class edit_admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(250, 310, 150, 25);
+        jButton1.setBounds(250, 360, 180, 30);
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +108,11 @@ public class edit_admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(530, 310, 120, 25);
+        jButton2.setBounds(540, 360, 140, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/frame_bg.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 900, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -188,6 +193,7 @@ String s1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

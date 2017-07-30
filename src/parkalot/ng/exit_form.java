@@ -57,6 +57,8 @@ public class exit_form extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -78,7 +80,7 @@ public class exit_form extends javax.swing.JFrame {
             }
         });
         jDialog1.getContentPane().add(jButton2);
-        jButton2.setBounds(70, 90, 80, 25);
+        jButton2.setBounds(70, 90, 80, 29);
 
         jButton3.setText("No");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -99,9 +101,9 @@ public class exit_form extends javax.swing.JFrame {
 
         jLabel1.setText("Enter the reg. no. of the vehicle :");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(140, 105, 230, 30);
+        jLabel1.setBounds(140, 160, 230, 30);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(550, 110, 190, 25);
+        jTextField1.setBounds(570, 160, 190, 30);
 
         jButton1.setText("Checkout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +113,15 @@ public class exit_form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1);
         jButton1.setBounds(370, 320, 140, 40);
+
+        jLabel4.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel4.setText("Exit Vehicle");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(400, 30, 140, 50);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/frame_bg.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 900, 640);
 
         jMenu3.setText("Actions");
 
@@ -227,6 +238,8 @@ public class exit_form extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

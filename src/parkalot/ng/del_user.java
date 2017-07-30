@@ -57,6 +57,7 @@ public class del_user extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         jDialog1.setBounds(new java.awt.Rectangle(530, 240, 250, 50));
         jDialog1.setMinimumSize(new java.awt.Dimension(350, 200));
@@ -92,13 +93,13 @@ public class del_user extends javax.swing.JFrame {
 
         jLabel1.setText("Delete User");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(350, 20, 180, 30);
+        jLabel1.setBounds(410, 20, 180, 30);
 
         jLabel2.setText("Username :");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(170, 140, 110, 30);
+        jLabel2.setBounds(170, 160, 200, 40);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(470, 140, 220, 25);
+        jTextField1.setBounds(530, 170, 220, 27);
 
         jButton1.setText("Ok");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +108,7 @@ public class del_user extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(290, 260, 90, 30);
+        jButton1.setBounds(290, 330, 120, 30);
 
         jButton4.setText("Cancel");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +117,11 @@ public class del_user extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(460, 260, 90, 30);
+        jButton4.setBounds(530, 330, 110, 30);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/frame_bg.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 900, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -205,6 +210,7 @@ public class del_user extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

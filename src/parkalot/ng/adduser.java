@@ -55,6 +55,7 @@ public class adduser extends javax.swing.JFrame {
         pf1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(240, 90, 0, 0));
@@ -64,19 +65,19 @@ public class adduser extends javax.swing.JFrame {
 
         jLabel1.setText("Add new User");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(330, 15, 150, 30);
+        jLabel1.setBounds(380, 20, 150, 30);
 
         jLabel2.setText("Username :");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(150, 100, 140, 30);
+        jLabel2.setBounds(150, 120, 140, 30);
 
         jLabel3.setText("Password :");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(150, 175, 130, 30);
+        jLabel3.setBounds(150, 210, 130, 30);
         getContentPane().add(tf1);
-        tf1.setBounds(470, 100, 160, 25);
+        tf1.setBounds(540, 120, 160, 27);
         getContentPane().add(pf1);
-        pf1.setBounds(470, 175, 170, 30);
+        pf1.setBounds(540, 210, 170, 30);
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +86,7 @@ public class adduser extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(230, 300, 100, 30);
+        jButton1.setBounds(280, 370, 100, 30);
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +95,11 @@ public class adduser extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(430, 300, 100, 30);
+        jButton2.setBounds(480, 370, 100, 30);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/frame_bg.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 900, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -172,6 +177,7 @@ public class adduser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField pf1;
     private javax.swing.JTextField tf1;
     // End of variables declaration//GEN-END:variables

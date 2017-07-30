@@ -57,6 +57,7 @@ public class user_login extends javax.swing.JFrame {
         tf1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         pf1 = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -91,13 +92,13 @@ public class user_login extends javax.swing.JFrame {
 
         jLabel2.setText("Login Id:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(220, 200, 80, 40);
+        jLabel2.setBounds(190, 200, 80, 40);
 
         jLabel3.setText("Password:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(220, 270, 80, 30);
+        jLabel3.setBounds(190, 270, 80, 30);
         getContentPane().add(tf1);
-        tf1.setBounds(470, 210, 170, 30);
+        tf1.setBounds(510, 210, 170, 30);
 
         jButton2.setText("Login");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -106,9 +107,13 @@ public class user_login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(340, 380, 160, 25);
+        jButton2.setBounds(370, 380, 160, 29);
         getContentPane().add(pf1);
-        pf1.setBounds(470, 270, 170, 25);
+        pf1.setBounds(510, 270, 170, 27);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/frame_bg.png"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 900, 640);
 
         jMenu3.setText("Actions");
 
@@ -216,6 +221,7 @@ public class user_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

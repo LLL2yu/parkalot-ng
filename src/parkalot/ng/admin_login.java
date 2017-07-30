@@ -55,6 +55,7 @@ public class admin_login extends javax.swing.JFrame {
         tf1 = new javax.swing.JTextField();
         pf1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -86,7 +87,7 @@ public class admin_login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         jLabel1.setText("      Admin Login");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(234, 44, 260, 30);
+        jLabel1.setBounds(310, 40, 260, 30);
 
         jLabel2.setText("User Name:");
         getContentPane().add(jLabel2);
@@ -94,11 +95,11 @@ public class admin_login extends javax.swing.JFrame {
 
         jLabel3.setText("Password:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(170, 210, 100, 30);
+        jLabel3.setBounds(170, 210, 130, 30);
         getContentPane().add(tf1);
-        tf1.setBounds(480, 140, 170, 25);
+        tf1.setBounds(520, 140, 170, 27);
         getContentPane().add(pf1);
-        pf1.setBounds(480, 220, 170, 25);
+        pf1.setBounds(520, 220, 170, 27);
 
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +108,11 @@ public class admin_login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(340, 330, 100, 40);
+        jButton1.setBounds(390, 360, 100, 40);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/frame_bg.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 900, 640);
 
         jMenu2.setText("Actions");
 
@@ -222,6 +227,7 @@ public class admin_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

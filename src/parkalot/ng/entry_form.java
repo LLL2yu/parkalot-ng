@@ -49,7 +49,7 @@ public class entry_form extends javax.swing.JFrame {
     public void add_box(){
         cb2.setModel(new DefaultComboBoxModel<Integer>(two.toArray(new Integer[0])));
         getContentPane().add(cb2);
-        cb2.setBounds(400, 260, 280, 25);
+        cb2.setBounds(510, 320, 280, 25);
     }
     Connection dum;
             PreparedStatement dang;
@@ -76,6 +76,7 @@ public class entry_form extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         cb1 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -123,27 +124,27 @@ public class entry_form extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         jLabel1.setText("Entry Form");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(350, 20, 160, 31);
+        jLabel1.setBounds(380, 20, 160, 31);
 
         jLabel2.setText("Owner's Name");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(110, 80, 150, 30);
+        jLabel2.setBounds(110, 110, 150, 30);
 
         jLabel3.setText("Vehicle Reg. No");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(110, 140, 140, 30);
+        jLabel3.setBounds(110, 180, 140, 30);
 
         jLabel4.setText("Car Type");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(110, 200, 120, 30);
+        jLabel4.setBounds(110, 250, 120, 30);
 
         jLabel5.setText("Slot No.");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(110, 260, 130, 30);
+        jLabel5.setBounds(110, 320, 130, 30);
         getContentPane().add(tf1);
-        tf1.setBounds(400, 80, 280, 30);
+        tf1.setBounds(510, 110, 280, 30);
         getContentPane().add(tf2);
-        tf2.setBounds(400, 140, 280, 30);
+        tf2.setBounds(510, 180, 280, 30);
 
         jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +153,7 @@ public class entry_form extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(200, 390, 170, 25);
+        jButton1.setBounds(200, 480, 170, 29);
 
         jButton2.setText("Reset");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -161,11 +162,15 @@ public class entry_form extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(480, 390, 170, 25);
+        jButton2.setBounds(500, 480, 170, 29);
 
         cb1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select one--", "Sedan", "Suv", "Hatchback", "Minivan" }));
         getContentPane().add(cb1);
-        cb1.setBounds(400, 200, 280, 25);
+        cb1.setBounds(510, 250, 280, 27);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/frame_bg.png"))); // NOI18N
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(0, 0, 900, 640);
 
         jMenu2.setText("Actions");
 
@@ -385,6 +390,7 @@ public class entry_form extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

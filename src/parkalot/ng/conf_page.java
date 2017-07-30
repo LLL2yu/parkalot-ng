@@ -63,6 +63,7 @@ public class conf_page extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         jDialog1.setBounds(new java.awt.Rectangle(530, 240, 250, 50));
         jDialog1.setMinimumSize(new java.awt.Dimension(350, 200));
@@ -95,13 +96,13 @@ public class conf_page extends javax.swing.JFrame {
 
         jLabel1.setText("Configurations");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(350, 20, 230, 30);
+        jLabel1.setBounds(390, 20, 230, 30);
 
         jLabel2.setText("Set Parking Rates :");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(140, 80, 150, 30);
+        jLabel2.setBounds(140, 80, 170, 30);
         getContentPane().add(tf1);
-        tf1.setBounds(530, 80, 70, 25);
+        tf1.setBounds(530, 80, 70, 27);
 
         jButton1.setText("Change Rate");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +111,7 @@ public class conf_page extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(340, 140, 200, 25);
+        jButton1.setBounds(340, 140, 240, 29);
 
         jButton2.setText("Change Admin Password");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +120,7 @@ public class conf_page extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(340, 320, 200, 25);
+        jButton2.setBounds(340, 350, 240, 29);
 
         jButton3.setText("Edit User Details");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -128,11 +129,11 @@ public class conf_page extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(340, 380, 200, 25);
+        jButton3.setBounds(340, 420, 240, 29);
 
         cb1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--select one--", "Hatchback", "Sedan", "Suv", "Minivan" }));
         getContentPane().add(cb1);
-        cb1.setBounds(310, 80, 210, 25);
+        cb1.setBounds(310, 80, 210, 27);
 
         jLabel3.setText("₹ per hour");
         getContentPane().add(jLabel3);
@@ -145,13 +146,13 @@ public class conf_page extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(410, 440, 80, 30);
+        jButton6.setBounds(400, 500, 110, 30);
 
         jLabel4.setText("Set no. of parking slots available");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(140, 180, 230, 30);
+        jLabel4.setBounds(140, 210, 280, 30);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(460, 180, 260, 30);
+        jTextField1.setBounds(460, 210, 260, 30);
 
         jButton7.setText("Set");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +161,11 @@ public class conf_page extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton7);
-        jButton7.setBounds(360, 245, 180, 30);
+        jButton7.setBounds(370, 280, 180, 30);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/frame_bg.png"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 900, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -302,6 +307,7 @@ String x2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField tf1;
     // End of variables declaration//GEN-END:variables
