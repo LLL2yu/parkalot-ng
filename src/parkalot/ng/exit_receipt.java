@@ -15,6 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package parkalot.ng;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.*;
+import static java.awt.print.Printable.NO_SUCH_PAGE;
+import static java.awt.print.Printable.PAGE_EXISTS;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.security.CodeSource;
@@ -26,7 +31,7 @@ import java.util.logging.Logger;
  *
  * @author lll2yu
  */
-public class exit_receipt extends javax.swing.JFrame {
+public class exit_receipt extends javax.swing.JFrame implements Printable{
 
     /**
      * Creates new form exit_receipt
@@ -183,6 +188,20 @@ public class exit_receipt extends javax.swing.JFrame {
         File jarFile = new File(codeSource.getLocation().toURI().getPath());
         jarDir = jarFile.getParentFile().getPath();
     }
+    
+      public int print(Graphics g, PageFormat pf, int page) throws
+                                                        PrinterException {
+
+        if (page > 0) {
+            return NO_SUCH_PAGE;
+        }
+
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.translate(pf.getImageableX(), pf.getImageableY());
+        getContentPane().printAll(g);
+
+        return PAGE_EXISTS;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -212,6 +231,7 @@ public class exit_receipt extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(240, 90, 0, 0));
@@ -281,7 +301,7 @@ public class exit_receipt extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(390, 570, 120, 30);
+        jButton1.setBounds(270, 570, 120, 30);
 
         jLabel10.setText("Hours");
         getContentPane().add(jLabel10);
@@ -291,6 +311,15 @@ public class exit_receipt extends javax.swing.JFrame {
         getContentPane().add(jLabel11);
         jLabel11.setBounds(770, 405, 60, 30);
 
+        jButton2.setText("Print");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(520, 570, 120, 30);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -299,6 +328,17 @@ public class exit_receipt extends javax.swing.JFrame {
         dispose();
         empty_table();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PrinterJob job = PrinterJob.getPrinterJob();
+         job.setPrintable(this);
+         boolean ok = job.printDialog();
+         if (ok) {
+             try {
+                  job.print();
+             } catch (PrinterException ex) {}
+         }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,6 +380,7 @@ public class exit_receipt extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
