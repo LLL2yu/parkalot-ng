@@ -185,21 +185,21 @@ public class conf_page extends javax.swing.JFrame {
         File jarFile = new File(codeSource.getLocation().toURI().getPath());
         jarDir = jarFile.getParentFile().getPath();
     }
-float x1;
-String x2;
+String x1,x2;
+Connection ce;
+PreparedStatement se;
     void set_rate(){
-        x1=(Float.parseFloat(tf1.getText())/60);
+        x1=String.valueOf(Float.parseFloat(tf1.getText())/60);
         Object sI=cb1.getSelectedItem();
         if (sI != null)
 			{
     				x2 = sI.toString();
                         }
         try{
-            ResultSet re;
             Class.forName("org.sqlite.JDBC");
-		Connection ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/ratesDB.db");
-		Statement se=ce.createStatement();
-		re=se.executeQuery("update rates set price="+x1+"where name='"+x2+"'");
+		ce=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/ratesDB.db");
+		se=ce.prepareStatement("update rates set price='"+x1+"' where name='"+x2+"'");
+		se.executeUpdate();
                 tf1.setText("Done");
             }
         catch(Exception e){}  
