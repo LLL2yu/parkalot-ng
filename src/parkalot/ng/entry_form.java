@@ -37,7 +37,6 @@ public class entry_form extends javax.swing.JFrame {
      * Creates new form entry_form
      */
     public entry_form() {
-        initComponents();
         try {
             path();
         } catch (URISyntaxException ex) {
@@ -45,6 +44,7 @@ public class entry_form extends javax.swing.JFrame {
         }
         slot_sorter();
         add_box();
+        initComponents();
     }
     public void add_box(){
         cb2.setModel(new DefaultComboBoxModel<Integer>(two.toArray(new Integer[0])));
