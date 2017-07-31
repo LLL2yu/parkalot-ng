@@ -155,7 +155,7 @@ public class exit_receipt extends javax.swing.JFrame implements Printable{
 			Statement se=ce.createStatement();
 			re=se.executeQuery("select price from rates where name='"+lap+"'");
                         while(re.next()){
-				ra=re.getFloat(1);
+				ra=Float.valueOf(re.getString(1));
                             }
 		}
 		catch(Exception e){}

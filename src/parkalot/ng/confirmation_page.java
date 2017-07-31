@@ -173,7 +173,7 @@ public class confirmation_page extends javax.swing.JFrame implements Printable{
         getContentPane().add(l4);
         l4.setBounds(360, 270, 110, 20);
         getContentPane().add(l5);
-        l5.setBounds(360, 330, 210, 30);
+        l5.setBounds(360, 330, 100, 30);
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +201,7 @@ public class confirmation_page extends javax.swing.JFrame implements Printable{
 
         jLabel8.setText("Hours");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(570, 330, 180, 30);
+        jLabel8.setBounds(490, 330, 180, 30);
 
         jLabel9.setText("* this reciept is valid for 24 hours only.");
         getContentPane().add(jLabel9);

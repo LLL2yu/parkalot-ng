@@ -269,8 +269,7 @@ public class entry_form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
     String sIs,sIs2;
     void perma(){
-        String x1,x2,x3,x5,x6;
-        int x4;
+        String x1,x2,x3,x4,x5,x6;
         x1=tf1.getText();
         x2=tf2.getText();
         Object sI=cb1.getSelectedItem();
@@ -284,7 +283,7 @@ public class entry_form extends javax.swing.JFrame {
 			{
     				sIs2 = sI2.toString();
                         }
-        x4=Integer.parseInt(sIs2);
+        x4=(sIs2);
         
         java.util.Date date = new java.util.Date( );
             SimpleDateFormat ft =new SimpleDateFormat ("HHmm");
@@ -298,26 +297,26 @@ public class entry_form extends javax.swing.JFrame {
             egg.setString(1, x1);
             egg.setString(2, x2);
             egg.setString(3, x3);
-            egg.setInt(4, x4);
+            egg.setString(4, x4);
             egg.setString(5, x5);
             egg.setString(6, x6);
-            egg.executeUpdate();
+            egg.execute();
         }
-        catch(Exception e){}  
+        catch(Exception e){e.getMessage();}  
     }
     
   void temp(){
         try{
-            int s;
+            String s;
             Object sI2=cb2.getSelectedItem();
         if (sI2 != null)
 			{
     				sIs2 = sI2.toString();
                         }
-        s=Integer.parseInt(sIs2);
+        s=(sIs2);
             Class.forName("org.sqlite.JDBC");
             dum=DriverManager.getConnection("jdbc:sqlite:"+jarDir+"/database/parkingDB.db");
-            dang=dum.prepareStatement("insert into temp(no) values ("+s+")");
+            dang=dum.prepareStatement("insert into temp(no) values ('"+s+"')");
             dang.executeUpdate();
             
         }
